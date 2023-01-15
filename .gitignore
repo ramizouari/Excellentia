@@ -1,0 +1,12 @@
+# Archive Files
+*.7z
+*.zip
+
+#Mount Points
+runs
+tests-backup
+runs
+tests
+
+#Project Files
+.idea

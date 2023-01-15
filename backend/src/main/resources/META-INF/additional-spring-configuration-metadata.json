@@ -1,0 +1,23 @@
+{
+  "properties": [
+    {
+      "name": "file.upload",
+      "type": "java.lang.String",
+      "description": "Description for file.upload."
+    },
+    {
+      "name": "spring.servlet.multipart",
+      "type": "java.lang.String",
+      "description": "Description for spring.servlet.multipart."
+    },
+    {
+      "name": "disk.tests",
+      "type": "java.lang.String",
+      "description": "Description for disk.tests."
+    },
+    {
+      "name": "disk.runs",
+      "type": "java.lang.String",
+      "description": "Description for disk.runs."
+    }
+  ] }

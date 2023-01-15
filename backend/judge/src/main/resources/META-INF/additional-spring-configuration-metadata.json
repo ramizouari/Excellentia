@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "discovery.compiler.url",
+      "type": "java.lang.String",
+      "description": "Description for discovery.compiler.url."
+    },
+    {
+      "name": "discovery.runner.url",
+      "type": "java.lang.String",
+      "description": "Description for discovery.runner.url."
+    }
+  ] }

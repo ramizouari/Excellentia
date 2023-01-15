@@ -1,0 +1,67 @@
+compilers:
+  java:
+    command: "${JAVAC:/usr/bin/javac}"
+    arguments: "-d {output} {input}"
+  cpp:
+    command: "${CPP:/usr/bin/g++}"
+    flags: "-std=c++20"
+    arguments: "-o {output} {input}"
+  c:
+    command: "${CC:/usr/bin/gcc}"
+    flags: "-std=c17"
+    arguments: "-o {output} {input}"
+
+interpreters:
+  system:
+    command: "{input}"
+    arguments: ""
+  python:
+    command: "${PYTHON:/usr/bin/python3}"
+    arguments: "{input}"
+
+
+disk:
+    # Path: src/main/resources/application.yml
+    # The path to the directory where the files will be stored
+  runs: "${DISK_MOUNT:/home/ramizouari/Academic/Excellentia/runs}"
+  tests: "${DISK_TESTS:/home/ramizouari/Academic/Excellentia/tests}"
+
+spring:
+  datasource:
+    url: "jdbc:sqlserver://excellentia-sql-server.database.windows.net:1433;database=excellentia;user=excellentia@excellentia-sql-server;password=gl5@12345678;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;"
+
+#  jpa:
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: "create-drop"
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: "8KB"
+      max-file-size: "2MB"
+      max-request-size: "3MB"
+  config:
+    #    import: "optional:configserver"
+    import: "deployment.yml"
+  cloud:
+    config:
+      enabled: false
+
+
+
+#  jpa:
+#    hibernate:
+#      naming:
+#        physical-strategy: "org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl"
+file:
+  upload:
+    #location: "${DISK_MOUNT:/home/ramizouari/Academic/Excellentia/mount}"
+
+
+
+###
+###Add a spring.config.import=configserver: property to your configuration.
+#	If configuration is not required add spring.config.import=optional:configserver: instead.
+#	To disable this check, set spring.cloud.config.enabled=false or
+#	spring.cloud.config.import-check.enabled=false.
+#gl5@12345678

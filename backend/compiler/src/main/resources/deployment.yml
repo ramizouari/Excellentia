@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: excellentia-checker
+server:
+  port : 8085
