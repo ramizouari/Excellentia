@@ -30,10 +30,15 @@ public class Interpreter
 
     public void setTimeLimit(int timeLimitSeconds) throws InterruptedException
     {
-        process.waitFor(timeLimitSeconds, TimeUnit.SECONDS);
+
+        boolean completed=process.waitFor(timeLimitSeconds, TimeUnit.SECONDS);
+        if(!completed)
+            throw new InterruptedException("Time limit exceeded");
     }
     public void setTimeLimitMilliSeconds(int timeLimit) throws InterruptedException
     {
-        process.waitFor(timeLimit, TimeUnit.MILLISECONDS);
+        boolean completed=process.waitFor(timeLimit, TimeUnit.MILLISECONDS);
+        if(!completed)
+            throw new InterruptedException("Time limit exceeded");
     }
 }

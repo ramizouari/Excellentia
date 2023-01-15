@@ -19,5 +19,10 @@
       "name": "disk.runs",
       "type": "java.lang.String",
       "description": "Description for disk.runs."
+    },
+    {
+      "name": "disk.logs",
+      "type": "java.lang.String",
+      "description": "Description for disk.logs."
     }
   ] }

@@ -25,10 +25,22 @@ disk:
     # The path to the directory where the files will be stored
   runs: "${DISK_MOUNT:/home/ramizouari/Academic/Excellentia/runs}"
   tests: "${DISK_TESTS:/home/ramizouari/Academic/Excellentia/tests}"
+  logs: "${DISK_LOGS:/home/ramizouari/Academic/Excellentia/logs}"
+
+
+# For now, change to host=excellentia-sql-server if excellentia-mssql-server is down
+database:
+  server: "${SQL_SERVER:excellentia-mssql-server}"
+  host: "${database.server}.database.windows.net"
+  port: "${SQL_PORT:1433}"
+  database: "excellentia"
+  user: "excellentia@${database.server}"
+  password: "gl5@12345678"
+
 
 spring:
   datasource:
-    url: "jdbc:sqlserver://excellentia-sql-server.database.windows.net:1433;database=excellentia;user=excellentia@excellentia-sql-server;password=gl5@12345678;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;"
+    url: "jdbc:sqlserver://${database.host}:${database.port};database=${database.database};user=${database.user};password=${database.password};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;"
 
 #  jpa:
 #    show-sql: true
@@ -47,6 +59,12 @@ spring:
     config:
       enabled: false
 
+  sleuth:
+    otel:
+      exporter:
+        otlp:
+          endpoint: "${OTEL_URL:http://collector:4317}"
+
 
 
 #  jpa:
@@ -57,11 +75,41 @@ file:
   upload:
     #location: "${DISK_MOUNT:/home/ramizouari/Academic/Excellentia/mount}"
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - info
+          - prometheus
+          - metrics
+          - logfile
+          - configprops
+  endpoint:
+    health:
+      show-components: "always"
+      show-details: "always"
+      probes:
+        enabled: true
 
-
-###
+#logging:
+#  level:
+#    root: DEBUG
+#
+#
+#    org:
+#      springframework:
+#        boot:
+#          autoconfigure:
+#            logging: DEBUG
+#endpoints:
+#  logfile:
+#    sensitive: false
 ###Add a spring.config.import=configserver: property to your configuration.
 #	If configuration is not required add spring.config.import=optional:configserver: instead.
 #	To disable this check, set spring.cloud.config.enabled=false or
 #	spring.cloud.config.import-check.enabled=false.
-#gl5@12345678
+logging:
+  file:
+    name: "${disk.logs}/${spring.application.name}.log"

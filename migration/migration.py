@@ -38,7 +38,7 @@ def normalize_tests(tests_dir):
 problems=normalize_tests(TESTS_DIR)
 
 import pyodbc
-server = 'excellentia-sql-server.database.windows.net'
+server = 'excellentia-mssql-server.database.windows.net'
 database = 'excellentia'
 username = 'excellentia'
 password = 'gl5@12345678'
