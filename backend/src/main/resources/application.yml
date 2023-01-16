@@ -23,7 +23,7 @@ interpreters:
 disk:
     # Path: src/main/resources/application.yml
     # The path to the directory where the files will be stored
-  runs: "${DISK_MOUNT:/home/ramizouari/Academic/Excellentia/runs}"
+  runs: "${DISK_RUNS:/home/ramizouari/Academic/Excellentia/runs}"
   tests: "${DISK_TESTS:/home/ramizouari/Academic/Excellentia/tests}"
   logs: "${DISK_LOGS:/home/ramizouari/Academic/Excellentia/logs}"
 

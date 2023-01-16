@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: ms-a-service
+  name: compiler
   labels:
-    app: ms-a
+    app: compiler
 spec:
   selector:
-      app: ms-a
+      app: compiler
   ports:
-  - port: 9090
+  - port: 8000
     protocol: TCP
-    targetPort: 3000
+    targetPort: 8080
   type: ClusterIP

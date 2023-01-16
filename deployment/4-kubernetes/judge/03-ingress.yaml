@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: judge
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /api/compiler
+        pathType: Prefix
+        backend:
+          service:
+            name: compiler-service
+            port:
+              number: 8000
+      - path: /api/runner
+        pathType: Prefix
+        backend:
+          service:
+            name: runner-service
+            port:
+              number: 8000
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: judge-service
+            port:
+              number: 8000

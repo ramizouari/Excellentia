@@ -1,5 +1,5 @@
 spring:
   application:
-    name: excellentia-checker
+    name: excellentia-compiler
 server:
   port : 8085

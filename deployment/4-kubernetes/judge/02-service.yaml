@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: judge
+  namespace: excellentia
+  labels:
+    app: judge
+spec:
+  selector:
+      app: judge
+  ports:
+  - port: 8000
+    protocol: TCP
+    targetPort: 8080
+  type: ClusterIP

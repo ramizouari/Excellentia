@@ -1,0 +1,12 @@
+#Terraform Configuration
+.terraform
+
+#Terraform Lock
+.terraform.lock.hcl
+
+#Terraform State file
+terraform.tfstate
+terraform.tfstate.backup
+
+#Large Files
+tests.7z

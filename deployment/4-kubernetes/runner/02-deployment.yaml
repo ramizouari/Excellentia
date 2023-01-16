@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: compiler
+  namespace: excellentia
+  labels:
+    app: compiler
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: compiler
+  template:
+    metadata:
+      labels:
+        app: compiler
+    spec:
+      containers:
+        - name: compiler
+          image: excellentia-compiler
+          imagePullPolicy: Always
+          env:
+            - name: SQL_SERVER
+              value: "excellentia-mssql-server"
+            - name: SQL_PORT
+              value: "1433"
+            - name: JAVA
+              value: "java"
+            - name: PYTHON
+              value: "python3"
+            - name: DISK_MOUNT
+              value: "/data/mount"
+            - name: DISK_LOG
+              value: "/data/log"
+            - name: DISK_TESTS
+              value: "/data/tests"
+          ports:
+            - containerPort: 8080
+            

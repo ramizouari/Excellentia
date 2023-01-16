@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: judge
+  labels:
+    app: judge
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: judge
+  template:
+    metadata:
+      labels:
+        app: judge
+    spec:
+      containers:
+        - name: judge
+          image: excellentia-judge
+          imagePullPolicy: Always
+          env:
+            - name: COMPILER_HOST
+              value: "compiler.excellentia"
+            - name: COMPILER_PORT
+              value: "80"
+            - name: COMPILER_URL
+              value: "${COMPILER_HOST}:${COMPILER_PORT}"
+            - name: RUNNER_HOST
+              value: "runner.excellentia"
+            - name: COMPILER_URL
+              value: "${RUNNER_HOST}:${RUNNER_PORT}"
+          ports:
+            - containerPort: 8000
