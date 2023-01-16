@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: judge
+  labels:
+    app: judge
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: judge
+  template:
+    metadata:
+      labels:
+        app: judge
+    spec:
+      containers:
+        - name: judge
+          image: wassimkallel/ms-a-insat
+          imagePullPolicy: Always
+          env:
+            - name: MSB_HOST
+              value: "ms-b-service.ms-b-ns"
+            - name: MSB_PORT
+              value: "80"
+          ports:
+            - containerPort: 3000

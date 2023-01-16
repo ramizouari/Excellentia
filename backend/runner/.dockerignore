@@ -1,0 +1,13 @@
+## Generated Classes
+target
+
+## Project Files
+.idea
+.vs
+
+##Ignore Files
+.gitignore
+.dockerignore
+
+## DockerFile
+Dockerfile

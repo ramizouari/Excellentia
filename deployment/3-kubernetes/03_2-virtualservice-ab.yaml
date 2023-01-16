@@ -1,0 +1,23 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: gl5
+  namespace: default
+spec:
+  gateways:
+    - gl5-gateway
+  hosts:
+    - "*"
+  http:
+    - match:
+        - headers:
+            End-User:
+              exact: jason
+      route:
+        - destination:
+            host: ms-a-service
+            subset: v2
+    - route:
+        - destination:
+            host: ms-a-service
+            subset: v1

@@ -16,6 +16,16 @@
     <properties>
         <java.version>17</java.version>
     </properties>
+    <profiles>
+        <profile>
+            <id>dockerized</id>
+            <build>
+                <directory>${env.APP}</directory>
+                <finalName>compiler</finalName>
+            </build>
+        </profile>
+    </profiles>
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-config -->
         <!--   <dependency>

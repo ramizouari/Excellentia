@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ms-a-service
+  labels:
+    app: ms-a
+spec:
+  selector:
+      app: ms-a
+  ports:
+  - port: 9090
+    protocol: TCP
+    targetPort: 3000
+  type: ClusterIP

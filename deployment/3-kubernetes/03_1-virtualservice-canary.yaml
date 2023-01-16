@@ -1,0 +1,20 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: excellentia
+  namespace: default
+spec:
+  gateways:
+    - excellentia-gateway
+  hosts:
+    - "*"
+  http:
+    - route:
+        - destination:
+            host: ms-a-service
+            subset: v1
+          weight: 80
+        - destination:
+            host: ms-a-service
+            subset: v2
+          weight: 20
