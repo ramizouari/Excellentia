@@ -15,6 +15,16 @@ spec:
       labels:
         app: compiler
     spec:
+      initContainers:
+        - name: tests-prepare
+          image: ubuntu:22.04
+          env:
+            - name: FILE_URL
+              value: "https://excellentiastorage.blob.core.windows.net/tests/tests.7z"
+          command: ["/bin/sh","-c","apt update && apt install p7zip-full curl -y;mkdir /out; curl $FILE_URL >/out/tests.7z; cd /out; 7z x tests.7z; rm -f tests.7z; cp -r . /tests;"]
+          volumeMounts:
+            - name: testsvolume
+              mountPath: "/tests"
       containers:
         - name: compiler
           image: ramizouari/excellentia-compiler
@@ -34,7 +44,7 @@ spec:
               value: "java"
             - name: PYTHON
               value: "python3"
-            - name: DISK_MOUNT
+            - name: DISK_RUNS
               value: "/data/runs"
             - name: DISK_LOG
               value: "/data/logs"

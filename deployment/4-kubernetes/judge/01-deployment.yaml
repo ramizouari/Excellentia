@@ -33,7 +33,7 @@ spec:
               value: "java"
             - name: PYTHON
               value: "python3"
-            - name: DISK_MOUNT
+            - name: DISK_RUNS
               value: "/data/runs"
             - name: DISK_LOG
               value: "/data/logs"
