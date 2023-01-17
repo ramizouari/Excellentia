@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: compiler
+  name: runner
   namespace: excellentia
   labels:
-    app: compiler
+    app: runner
 spec:
   replicas: 4
   selector:
     matchLabels:
-      app: compiler
+      app: runner
   template:
     metadata:
       labels:
-        app: compiler
+        app: runner
     spec:
       containers:
-        - name: compiler
-          image: ramizouari/excellentia-compiler
+        - name: runner
+          image: ramizouari/excellentia-runner
           imagePullPolicy: Always
           env:
             - name: SQL_SERVER
@@ -45,10 +45,20 @@ spec:
           volumeMounts:
             - name: runsvolume
               mountPath: "/data/runs"
-              readonly: true
+              readOnly: true
             - name: testsvolume
               mountPath: "/data/tests"
               readOnly: true
             - name: logsvolume
               mountPath: "/data/logs"
+      volumes:
+      - name: runsvolume
+        persistentVolumeClaim:
+          claimName: runs-pvc  
+      - name: testsvolume
+        persistentVolumeClaim:
+          claimName: tests-pvc
+      - name: logsvolume
+        persistentVolumeClaim:
+          claimName: logs-pvc
             

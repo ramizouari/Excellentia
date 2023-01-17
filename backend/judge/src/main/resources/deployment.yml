@@ -6,7 +6,7 @@ server:
 
 discovery:
   compiler:
-    url: "${CHECKER_URL:http://localhost:8085}"
+    url: "${COMPILER_URL:http://localhost:8085}"
   runner:
     url: "${RUNNER_URL:http://localhost:8090}"
 

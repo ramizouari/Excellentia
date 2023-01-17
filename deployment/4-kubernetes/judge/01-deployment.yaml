@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: judge
+  namespace: excellentia
   labels:
     app: judge
 spec:
@@ -19,26 +20,10 @@ spec:
           image: ramizouari/excellentia-judge
           imagePullPolicy: Always
           env:
-            - name: SQL_SERVER
-              value: "excellentia-mssql-server"
-            - name: SQL_PORT
-              value: "1433"
-            - name: CPP
-              value: "g++"
-            - name: CC
-              value: "gcc"
-            - name: JAVAC
-              value: "javac"
-            - name: JAVA
-              value: "java"
-            - name: PYTHON
-              value: "python3"
-            - name: DISK_RUNS
-              value: "/data/runs"
-            - name: DISK_LOG
-              value: "/data/logs"
-            - name: DISK_TESTS
-              value: "/data/tests"
+            - name: "DISCOVERY_COMPILER_URL"
+              value: "http://compiler-service.excellentia:8000"
+            - name: "DISCOVERY_RUNNER_URL"
+              value: "http://runner-service.excellentia:8000"
           ports:
             - containerPort: 8080
           volumeMounts:
@@ -50,3 +35,13 @@ spec:
               readOnly: true
             - name: logsvolume
               mountPath: "/data/logs"
+      volumes:
+      - name: runsvolume
+        persistentVolumeClaim:
+          claimName: runs-pvc  
+      - name: testsvolume
+        persistentVolumeClaim:
+          claimName: tests-pvc
+      - name: logsvolume
+        persistentVolumeClaim:
+          claimName: logs-pvc

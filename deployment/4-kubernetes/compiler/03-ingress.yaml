@@ -1,7 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: judge
+  name: compiler-ingress
+  namespace: excellentia
 spec:
   ingressClassName: nginx
   rules:
