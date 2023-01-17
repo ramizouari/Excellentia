@@ -23,7 +23,7 @@ RUN ./mvnw install -Pdockerized
 
 ENV DATA=/data
 ENV DISK_LOGS=${DATA}/logs
-ENV DISK_MOUNT=${DATA}/mount
+ENV DISK_runs=${DATA}/runs
 ENV DISK_TESTS=${DATA}/tests
 
 RUN mkdir -p ${DATA}

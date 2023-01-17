@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: compiler
-          image: excellentia-compiler
+          image: ramizouari/excellentia-compiler
           imagePullPolicy: Always
           env:
             - name: SQL_SERVER
@@ -41,7 +41,7 @@ spec:
             - name: DISK_TESTS
               value: "/data/tests"
           ports:
-            - containerPort: 8080
+            - containerPort: 8085
           volumeMounts:
             - name: runsvolume
               mountPath: "/data/runs"

@@ -16,18 +16,37 @@ spec:
     spec:
       containers:
         - name: judge
-          image: excellentia-judge
+          image: ramizouari/excellentia-judge
           imagePullPolicy: Always
           env:
-            - name: COMPILER_HOST
-              value: "compiler.excellentia"
-            - name: COMPILER_PORT
-              value: "80"
-            - name: COMPILER_URL
-              value: "${COMPILER_HOST}:${COMPILER_PORT}"
-            - name: RUNNER_HOST
-              value: "runner.excellentia"
-            - name: COMPILER_URL
-              value: "${RUNNER_HOST}:${RUNNER_PORT}"
+            - name: SQL_SERVER
+              value: "excellentia-mssql-server"
+            - name: SQL_PORT
+              value: "1433"
+            - name: CPP
+              value: "g++"
+            - name: CC
+              value: "gcc"
+            - name: JAVAC
+              value: "javac"
+            - name: JAVA
+              value: "java"
+            - name: PYTHON
+              value: "python3"
+            - name: DISK_MOUNT
+              value: "/data/runs"
+            - name: DISK_LOG
+              value: "/data/logs"
+            - name: DISK_TESTS
+              value: "/data/tests"
           ports:
-            - containerPort: 8000
+            - containerPort: 8080
+          volumeMounts:
+            - name: runsvolume
+              mountPath: "/data/runs"
+              readOnly: true
+            - name: testsvolume
+              mountPath: "/data/tests"
+              readOnly: true
+            - name: logsvolume
+              mountPath: "/data/logs"
