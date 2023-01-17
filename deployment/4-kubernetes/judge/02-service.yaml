@@ -9,7 +9,7 @@ spec:
   selector:
       app: judge
   ports:
-  - port: 8000
+  - port: 80
     protocol: TCP
     targetPort: 8080
-  type: ClusterIP
+  type: LoadBalancer

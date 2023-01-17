@@ -1,31 +1,20 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: judge
+  name: judge-ingress
   namespace: excellentia
+
 spec:
   ingressClassName: nginx
   rules:
+
+  #- host: discovery.app.front
   - http:
       paths:
-      - path: /api/compiler
-        pathType: Prefix
-        backend:
-          service:
-            name: compiler-service
-            port:
-              number: 8000
-      - path: /api/runner
-        pathType: Prefix
-        backend:
-          service:
-            name: runner-service
-            port:
-              number: 8000
-      - path: /
-        pathType: Prefix
-        backend:
+      - backend:
           service:
             name: judge-service
             port:
-              number: 8000
+              number: 80
+        path: /
+        pathType: Prefix

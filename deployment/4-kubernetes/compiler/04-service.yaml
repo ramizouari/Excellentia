@@ -9,7 +9,7 @@ spec:
   selector:
       app: compiler
   ports:
-  - port: 8000
+  - port: 80
     protocol: TCP
     targetPort: 8085
   type: ClusterIP

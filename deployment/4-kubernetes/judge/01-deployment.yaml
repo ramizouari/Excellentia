@@ -21,9 +21,9 @@ spec:
           imagePullPolicy: Always
           env:
             - name: "DISCOVERY_COMPILER_URL"
-              value: "http://compiler-service.excellentia:8000"
+              value: "http://compiler-service.excellentia:80"
             - name: "DISCOVERY_RUNNER_URL"
-              value: "http://runner-service.excellentia:8000"
+              value: "http://runner-service.excellentia:80"
           ports:
             - containerPort: 8080
           volumeMounts:
