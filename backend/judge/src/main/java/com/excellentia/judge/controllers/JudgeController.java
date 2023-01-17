@@ -30,6 +30,7 @@ public class JudgeController
 {
     DiscoveryConfiguration discoveryConfiguration;
     Logger logger = LoggerFactory.getLogger(JudgeController.class);
+
     public JudgeController(DiscoveryConfiguration discoveryConfiguration)
     {
         this.discoveryConfiguration=discoveryConfiguration;
@@ -93,6 +94,7 @@ public class JudgeController
                 .log();
 
         var run=compileRequest.postForObject(discoveryConfiguration.getCompiler().getUrl().concat("/compile?problem_id=%s&compiler=gcc".formatted(problemId)), compileRequestEntity, Map.class);
+
 
         logger.atDebug().setMessage("Received response {}").addArgument(run)
                 .addKeyValue("ip_client",request.getRemoteAddr())
