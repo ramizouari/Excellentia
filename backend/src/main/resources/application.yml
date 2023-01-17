@@ -86,6 +86,7 @@ management:
           - metrics
           - logfile
           - configprops
+          - env
   endpoint:
     health:
       show-components: "always"

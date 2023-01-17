@@ -3,3 +3,22 @@ spring:
     config:
     #    import: "optional:configserver"
         import: "deployment.yml"
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include:
+                    - health
+                    - info
+                    - prometheus
+                    - metrics
+                    - logfile
+                    - configprops
+                    - env
+    endpoint:
+        health:
+            show-components: "always"
+            show-details: "always"
+            probes:
+                enabled: true
