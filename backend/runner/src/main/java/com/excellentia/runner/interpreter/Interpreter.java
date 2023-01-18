@@ -1,6 +1,7 @@
 package com.excellentia.runner.interpreter;
 
 import com.excellentia.runner.process.ProcessResult;
+import io.micrometer.core.annotation.Timed;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,7 +21,7 @@ public class Interpreter
         ProcessBuilder processBuilder = new ProcessBuilder(interpreterName, exeFile);
         return new ProcessResult(process=processBuilder.start());
     }
-
+    @Timed(value="interpreter.time", description = "Time taken to interpret a file")
     public ProcessResult execute(String exeFile,String inFile) throws IOException
     {
         ProcessBuilder processBuilder = new ProcessBuilder(interpreterName, exeFile);

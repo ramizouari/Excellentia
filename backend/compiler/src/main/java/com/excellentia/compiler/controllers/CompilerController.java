@@ -6,6 +6,7 @@ import com.excellentia.compiler.dto.Run;
 import com.excellentia.compiler.process.ProcessResult;
 import com.excellentia.compiler.repositories.ProblemRepository;
 import com.excellentia.compiler.repositories.RunRepository;
+import io.micrometer.core.annotation.Timed;
 import io.micrometer.core.instrument.MeterRegistry;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -51,6 +52,7 @@ public class CompilerController
         return List.of("gcc","clang","g++","clang++","javac");
     }
 
+    @Timed(value="compiler.request.time", description = "Time taken to handle a compilation request")
     @PostMapping("/compile")
     Run compile(@RequestParam("compiler") String compilerName,
                 @Nullable @RequestParam("problem_id") Long problemId,

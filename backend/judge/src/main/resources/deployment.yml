@@ -10,6 +10,11 @@ discovery:
   runner:
     url: "${RUNNER_URL:http://localhost:8090}"
 
+disk:
+  logs: "${DISK_LOGS:/home/ramizouari/Academic/Excellentia/logs}"
+
 logging:
   level:
     root: DEBUG
+  file:
+    name: "${disk.logs}/${spring.application.name}.log"

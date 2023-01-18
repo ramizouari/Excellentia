@@ -106,3 +106,18 @@ On this phase, we created a *Helm* chart, which is located at [deployment/4-kube
   - Copy it to `TESTS_DISK`
 - A Prometheus instance for collecting metrics
 - An Ingress controller acting as a gateway
+
+
+
+## 5. API
+
+For now, we proposed the following API for consumption:
+
+- `/judge/status` to get the status of the judge
+- `/judge/{problem_id}` to submit a solution for the problem identified by`problem_id`. It returns a solution verdict
+- `/actuator/health`, to check the health of the micro-service
+- `/actuator/prometheus`, to collect the metrics of the micro-service
+- `/actuator/logsfile`, to collect the logs of the micro-service
+
+## 6. Architecture
+

@@ -13,6 +13,7 @@ import com.excellentia.runner.request.RunRequest;
 import com.excellentia.runner.response.ProcessOutput;
 import com.excellentia.runner.response.SolutionVerdict;
 import com.excellentia.runner.response.Verdict;
+import io.micrometer.core.annotation.Timed;
 import io.micrometer.core.instrument.MeterRegistry;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -53,6 +54,7 @@ public class RunnerController {
         return "run";
     }
 
+    @Timed(value = "runner.request.time", description = "Time taken to handle a run request")
     @PostMapping
     public SolutionVerdict runSolution(@RequestBody RunRequest runRequest, HttpServletRequest request, HttpServletResponse response)
     {

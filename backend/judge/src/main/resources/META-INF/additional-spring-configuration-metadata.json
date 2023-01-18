@@ -9,5 +9,10 @@
       "name": "discovery.runner.url",
       "type": "java.lang.String",
       "description": "Description for discovery.runner.url."
+    },
+    {
+      "name": "otel.host",
+      "type": "java.lang.String",
+      "description": "Description for otel.host."
     }
   ] }

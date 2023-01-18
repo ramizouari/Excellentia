@@ -35,7 +35,7 @@ data:
         metrics_path: '/actuator/prometheus'
         scrape_interval: 5s
         static_configs:
-        - targets: ['compiler-service:8000','runner-service:8000','judge-service:8000']
+        - targets: ['compiler-service:80','runner-service:80','judge-service:80']
       - job_name: 'node-exporter'
         kubernetes_sd_configs:
           - role: endpoints
