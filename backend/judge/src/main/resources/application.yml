@@ -3,6 +3,8 @@ spring:
     config:
     #    import: "optional:configserver"
         import: "deployment.yml"
+    application:
+        name: excellentia-judge
 
 management:
     endpoints:
@@ -24,4 +26,5 @@ management:
                 enabled: true
 
 otel:
-    url: "http://localhost:9411"
+    url:
+        tracer: "http://localhost:9411"

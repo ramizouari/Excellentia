@@ -2,37 +2,35 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: grafana
-  name: grafana
+    app: tempo
+  name: tempo
   namespace: excellentia
 spec:
   selector:
     matchLabels:
-      app: grafana
+      app: tempo
   template:
     metadata:
       labels:
-        app: grafana
+        app: tempo
     spec:
       securityContext:
         fsGroup: 472
         supplementalGroups:
           - 0
       containers:
-        - name: grafana
-          image: grafana/grafana:9.1.0
+        - name: tempo
+          image: tempo/tempo:9.1.0
+          args: 
+            - "-config.file=/etc/tempo/tempo.yaml"
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 3000
-              name: http-grafana
+            - containerPort: 14268
+              name: http-tempo
               protocol: TCP
-          env:
-            - name: GF_AUTH_ANONYMOUS_ENABLED
-              value: "true"
-            - name: GF_AUTH_ANONYMOUS_ORG_ROLE
-              value: Admin
-            - name: GF_AUTH_DISABLE_LOGIN_FORM
-              value: "true"
+            - containerPort: 9411
+              name: http-zepkins
+              protocol: TCP
           readinessProbe:
             failureThreshold: 3
             httpGet:
@@ -56,21 +54,17 @@ spec:
               cpu: 250m
               memory: 750Mi
           volumeMounts:
-            - mountPath: /var/lib/grafana
-              name: grafana-pv
-            - mountPath: /etc/grafana/provisioning/dashboards
-              name: grafana-dashboards-config
-            - mountPath: /etc/grafana/provisioning/datasources
-              name: grafana-datasources-config
+            - name: tempo-configuration
+              mountPath: /etc/tempo/
+            - name: tempo-pv
+              mountPath: /data
+
       volumes:
-        - name: grafana-pv
+        - name: tempo-configuration
+          configMap:
+            defaultMode: 420
+            name: tempo-server-conf
+        - name: tempo-pv
           persistentVolumeClaim:
-            claimName: grafana-pvc
-        - name: grafana-dashboards-config
-          configMap:
-            defaultMode: 420
-            name: grafana-server-dashboards-conf
-        - name: grafana-datasources-config
-          configMap:
-            defaultMode: 420
-            name: grafana-server-datasources-conf
+            claimName: tempo-pvc
+            

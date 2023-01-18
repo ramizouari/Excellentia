@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-server-conf
+  labels:
+    name: prometheus-server-conf
+  namespace: excellentia
+data:
+  tempo.yml: |-
+    server:
+        http_listen_port: 3200
+
+    distributor:
+        receivers:
+            zipkin:
+
+    storage:
+        trace:
+            backend: local
+            local:
+              /data

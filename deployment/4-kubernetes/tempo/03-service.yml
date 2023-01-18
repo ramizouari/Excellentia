@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tempo-service
+  namespace: excellentia
+spec:
+  ports:
+    - port: 14268
+      protocol: TCP
+      targetPort: 14268
+      name: "zepkins"
+    - port: 9411
+      protocol: TCP
+      targetPort: 9411
+      name: "tempo"
+  selector:
+    app: tempo
+  sessionAffinity: None
+  type: ClusterIP

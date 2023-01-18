@@ -1,4 +1,4 @@
-package com.excellentia.judge.configuration;
+package com.excellentia.compiler.configuration;
 
 import io.micrometer.tracing.Tracer;
 import io.micrometer.tracing.otel.bridge.*;

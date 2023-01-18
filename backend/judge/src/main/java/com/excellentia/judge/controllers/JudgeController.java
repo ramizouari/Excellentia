@@ -53,7 +53,7 @@ public class JudgeController
     public Map submit(@RequestParam("file") MultipartFile file, @PathVariable String problemId,
                       HttpServletRequest request) throws IOException
     {
-        Tracer tracer = otelConfiguration.getTracer();
+        Tracer tracer = otelConfiguration.getTracerInstance();
         var span = tracer.nextSpan().name("submit_solution");
 
         Map response;

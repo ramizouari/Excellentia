@@ -24,5 +24,20 @@
       "name": "disk.logs",
       "type": "java.lang.String",
       "description": "Description for disk.logs."
+    },
+    {
+      "name": "otel.url",
+      "type": "java.lang.String",
+      "description": "Description for otel.url."
+    },
+    {
+      "name": "otel.logger",
+      "type": "java.lang.String",
+      "description": "Description for otel.logger."
+    },
+    {
+      "name": "otel.url.logger",
+      "type": "java.lang.String",
+      "description": "Description for otel.url.logger."
     }
   ] }

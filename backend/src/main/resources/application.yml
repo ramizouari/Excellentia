@@ -94,6 +94,9 @@ management:
       probes:
         enabled: true
 
+  tracing:
+    sampling:
+      probability: 1.0
 #logging:
 #  level:
 #    root: DEBUG
@@ -114,3 +117,11 @@ management:
 logging:
   file:
     name: "${disk.logs}/${spring.application.name}.log"
+  pattern:
+    level: "%5p [${spring.application.name:},trace_id=%X{traceId:-},span_id=%X{spanId:-},request_id=%X{requestId:-}]"
+
+
+otel:
+  url:
+    tracer: "http://localhost:9411/api/v2/spans"
+    logger: "http://localhost:3100/loki/api/v1/push"
